@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   home-api:
-    image: 192.168.1.136/home-api:latest # Substitua pelo caminho correto da imagem no seu registro Docker
+    image: registry.slimeking.xyz/home-api:latest
     container_name: home-api
     environment:
       SPRING_PROFILES_ACTIVE: prod # Define o profile ativo do Spring (caso necessário)
