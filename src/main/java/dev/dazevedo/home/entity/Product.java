@@ -28,8 +28,11 @@ public class Product{
     public final boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;
-        Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
-        Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
+        if (this.getClass() != o.getClass()) {
+            return false;
+        }
+        Class<?> oEffectiveClass = o instanceof HibernateProxy object ? object.getHibernateLazyInitializer().getPersistentClass() : o.getClass();
+        Class<?> thisEffectiveClass = this instanceof HibernateProxy object ? object.getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
         Product product = (Product) o;
         return id != null && Objects.equals(id, product.id);
@@ -37,6 +40,6 @@ public class Product{
 
     @Override
     public final int hashCode() {
-        return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
+        return this instanceof HibernateProxy o ? o.getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
     }
 }

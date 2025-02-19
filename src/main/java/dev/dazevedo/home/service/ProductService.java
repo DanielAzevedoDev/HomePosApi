@@ -10,14 +10,30 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class ProductService {
-    private ProductRepository productReposirory;
+    private ProductRepository productRepository;
+
+    public Product getProductById(Long id) { return productRepository.findById(id).orElse(null);}
 
     public List<Product> getAllProducts() {
-        return productReposirory.findAll();
+        return productRepository.findAll();
     }
 
     public Product createProduct(Product product) {
-        return productReposirory.save(product);
+        return productRepository.save(product);
     }
 
+    public Product updateProduct(Long id, Product product) {
+
+        Product existingProduct = productRepository.findById(id).orElse(null);
+
+        if (existingProduct != null) {
+            // Atualiza os campos necessários
+            existingProduct.setName(product.getName());
+            existingProduct.setPrice(product.getPrice());
+            // Salva as alterações
+            return productRepository.save(existingProduct);
+        }
+
+        return null;
+    }
 }

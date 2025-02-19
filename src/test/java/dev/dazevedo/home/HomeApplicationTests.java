@@ -8,6 +8,7 @@ class HomeApplicationTests {
 
     @Test
     void contextLoads() {
+        //this test checks if the app can be launched
     }
 
 }
